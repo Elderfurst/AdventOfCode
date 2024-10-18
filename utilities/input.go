@@ -13,7 +13,7 @@ func ReadInputFileToLines(filePath string) []string {
 		log.Fatal(err)
 	}
 
-	return strings.Split(string(file), "\n")
+	return strings.Split(string(file), "\r\n")
 }
 
 // ReadInputFileToCharacters parses a file at filePath into individual characters
