@@ -13,7 +13,7 @@ func main() {
 }
 
 func partOne() {
-	inputLines := utilities.ReadInputFileToLines("input.txt")
+	inputLines := utilities.ReadInputFileToLines("2015/day07/input.txt")
 	commands := parseInputLines(inputLines)
 
 	completedCommands := 0
@@ -85,7 +85,7 @@ func partOne() {
 }
 
 func partTwo() {
-	inputLines := utilities.ReadInputFileToLines("input.txt")
+	inputLines := utilities.ReadInputFileToLines("2015/day07/input.txt")
 	commands := parseInputLines(inputLines)
 
 	completedCommands := 0

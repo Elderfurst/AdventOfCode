@@ -11,7 +11,7 @@ func main() {
 }
 
 func partOne() {
-	inputCharacters := utilities.ReadInputFileToCharacters("input.txt")
+	inputCharacters := utilities.ReadInputFileToCharacters("2015/day03/input.txt")
 
 	x := 0
 	y := 0
@@ -47,7 +47,7 @@ func partOne() {
 }
 
 func partTwo() {
-	inputCharacters := utilities.ReadInputFileToCharacters("input.txt")
+	inputCharacters := utilities.ReadInputFileToCharacters("2015/day03/input.txt")
 
 	santaX := 0
 	santaY := 0

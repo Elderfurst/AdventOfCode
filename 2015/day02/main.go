@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	inputLines := utilities.ReadInputFileToLines("input.txt")
+	inputLines := utilities.ReadInputFileToLines("2015/day02/input.txt")
 
 	totalSquareFeet := 0
 	totalRibbon := 0

@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	inputCharacters := utilities.ReadInputFileToCharacters("input.txt")
+	inputCharacters := utilities.ReadInputFileToCharacters("2015/day01/input.txt")
 
 	currentFloor := 0
 	firstBasement := true

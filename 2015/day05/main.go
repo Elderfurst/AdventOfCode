@@ -13,7 +13,7 @@ func main() {
 }
 
 func partOne() {
-	inputLines := utilities.ReadInputFileToLines("input.txt")
+	inputLines := utilities.ReadInputFileToLines("2015/day05/input.txt")
 
 	vowels, _ := regexp.Compile("[aeiou].*[aeiou].*[aeiou]")
 
@@ -34,7 +34,7 @@ func partOne() {
 }
 
 func partTwo() {
-	inputLines := utilities.ReadInputFileToLines("input.txt")
+	inputLines := utilities.ReadInputFileToLines("2015/day05/input.txt")
 
 	niceWords := 0
 

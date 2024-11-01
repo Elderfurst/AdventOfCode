@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	inputLines := utilities.ReadInputFileToLines("input.txt")
+	inputLines := utilities.ReadInputFileToLines("2015/day06/input.txt")
 
 	instructions := parseInputToInstructions(inputLines)
 
