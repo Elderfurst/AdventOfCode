@@ -29,3 +29,27 @@ func GetPermutations[T any](values []T) [][]T {
 	inner(len(values), values)
 	return result
 }
+
+// GetSubsets returns all possible subsets of the provided slice
+func GetSubsets[T any](values []T) [][]T {
+	var inner func(int)
+	var result [][]T
+	var subset []T
+
+	inner = func(iterator int) {
+		if iterator == len(values) {
+			temp := make([]T, len(subset))
+			copy(temp, subset)
+			result = append(result, temp)
+			return
+		}
+
+		subset = append(subset, values[iterator])
+		inner(iterator + 1)
+		subset = subset[:len(subset)-1]
+		inner(iterator + 1)
+	}
+
+	inner(0)
+	return result
+}
