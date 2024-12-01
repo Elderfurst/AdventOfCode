@@ -1,5 +1,7 @@
 package utilities
 
+import "slices"
+
 // GetPermutations returns all permutations of the provided slice
 func GetPermutations[T any](values []T) [][]T {
 	var inner func(int, []T)
@@ -52,4 +54,20 @@ func GetSubsets[T any](values []T) [][]T {
 
 	inner(0)
 	return result
+}
+
+// GetCount returns the number of times needle appears in haystack
+func GetCount[S []T, T comparable](needle T, haystack S) int {
+	var count int
+
+	for {
+		i := slices.Index(haystack, needle)
+		if i == -1 {
+			break
+		}
+		count++
+		haystack = haystack[i+1:]
+	}
+
+	return count
 }
