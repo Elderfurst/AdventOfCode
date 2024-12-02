@@ -71,3 +71,10 @@ func GetCount[S []T, T comparable](needle T, haystack S) int {
 
 	return count
 }
+
+// RemoveIndex returns a new slice equal to the passed slice minus the element specified at index
+func RemoveIndex[T any](slice []T, index int) []T {
+	temp := make([]T, 0)
+	temp = append(temp, slice[:index]...)
+	return append(temp, slice[index+1:]...)
+}
