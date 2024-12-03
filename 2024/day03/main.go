@@ -3,7 +3,6 @@ package main
 import (
 	"adventofcode/utilities"
 	"fmt"
-	"math"
 	"regexp"
 	"strconv"
 	"strings"
@@ -41,14 +40,11 @@ func partOne() {
 func partTwo() {
 	input := utilities.ReadInputFileToString("2024/day03/input.txt")
 
-	regex, _ := regexp.Compile("mul\\([0-9]{1,3},[0-9]{1,3}\\)")
-	do, _ := regexp.Compile("do\\(\\)")
-	dont, _ := regexp.Compile("don't\\(\\)")
-
-	dos := do.FindAllStringIndex(input, -1)
-	donts := dont.FindAllStringIndex(input, -1)
+	regex, _ := regexp.Compile("mul\\([0-9]{1,3},[0-9]{1,3}\\)|do\\(\\)|don't\\(\\)")
 
 	commands := regex.FindAllStringIndex(input, -1)
+
+	process := true
 
 	total := 0
 
@@ -58,56 +54,25 @@ func partTwo() {
 
 		value := input[start:end]
 
-		if shouldOperate(dos, donts, start) {
-			commaSplit := strings.Split(value, ",")
+		if value == "do()" {
+			process = true
 
-			leftSplit := strings.Split(commaSplit[0], "(")
-			rightSplit := strings.Split(commaSplit[1], ")")
+		} else if value == "don't()" {
+			process = false
+		} else {
+			if process {
+				commaSplit := strings.Split(value, ",")
 
-			leftNumber, _ := strconv.Atoi(leftSplit[1])
-			rightNumber, _ := strconv.Atoi(rightSplit[0])
+				leftSplit := strings.Split(commaSplit[0], "(")
+				rightSplit := strings.Split(commaSplit[1], ")")
 
-			total += leftNumber * rightNumber
+				leftNumber, _ := strconv.Atoi(leftSplit[1])
+				rightNumber, _ := strconv.Atoi(rightSplit[0])
+
+				total += leftNumber * rightNumber
+			}
 		}
 	}
 
 	fmt.Println(total)
-}
-
-func shouldOperate(dos, donts [][]int, index int) bool {
-	process := true
-
-	difference := math.MaxInt
-
-	for _, do := range dos {
-		start := do[0]
-
-		if start < index {
-			tempDifference := index - start
-
-			if tempDifference < difference {
-				process = true
-				difference = tempDifference
-			}
-		} else {
-			break
-		}
-	}
-
-	for _, dont := range donts {
-		start := dont[0]
-
-		if start < index {
-			tempDifference := index - start
-
-			if tempDifference < difference {
-				process = false
-				difference = tempDifference
-			}
-		} else {
-			break
-		}
-	}
-
-	return process
 }
