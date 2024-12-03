@@ -26,3 +26,13 @@ func ReadInputFileToCharacters(filePath string) []string {
 
 	return strings.Split(string(file), "")
 }
+
+// ReadInputFileToString parses the input file and returns a single string with the contents
+func ReadInputFileToString(filePath string) string {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return string(file)
+}
