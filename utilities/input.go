@@ -36,3 +36,23 @@ func ReadInputFileToString(filePath string) string {
 
 	return string(file)
 }
+
+// ReadInputFileToGrid parses the input file and returns a slice of slices where a particular character can be accessed by its x,y coordinate
+func ReadInputFileToGrid(filePath string) [][]string {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rows := strings.Split(string(file), "\r\n")
+
+	grid := make([][]string, 0)
+
+	for _, row := range rows {
+		split := strings.Split(row, "")
+
+		grid = append(grid, split)
+	}
+
+	return grid
+}
