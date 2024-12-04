@@ -1,6 +1,9 @@
 package utilities
 
-import "strings"
+import (
+	"strings"
+	"unicode/utf8"
+)
 
 // GetAllIndices returns every index of the substring in the string
 func GetAllIndices(str, substr string) []int {
@@ -27,4 +30,16 @@ func GetAllIndices(str, substr string) []int {
 	}
 
 	return indices
+}
+
+// Reverse returns a reversed version of the provided string
+func Reverse(str string) string {
+	size := len(str)
+	buf := make([]byte, size)
+	for start := 0; start < size; {
+		r, n := utf8.DecodeRuneInString(str[start:])
+		start += n
+		utf8.EncodeRune(buf[size-start:], r)
+	}
+	return string(buf)
 }
