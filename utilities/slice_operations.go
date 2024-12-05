@@ -78,3 +78,28 @@ func RemoveIndex[T any](slice []T, index int) []T {
 	temp = append(temp, slice[:index]...)
 	return append(temp, slice[index+1:]...)
 }
+
+// SwapIndices returns a new slice with the values at the two indices swapped
+func SwapIndices[T any](slice []T, i, j int) []T {
+	temp := make([]T, 0)
+
+	var first int
+	var second int
+
+	if i < j {
+		first = i
+		second = j
+	} else {
+		first = j
+		second = i
+	}
+
+	firstValue := slice[first]
+	secondValue := slice[second]
+
+	temp = append(temp, slice[:first]...)
+	temp = append(temp, secondValue)
+	temp = append(temp, slice[first+1:second]...)
+	temp = append(temp, firstValue)
+	return append(temp, slice[second+1:]...)
+}
