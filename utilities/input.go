@@ -1,6 +1,7 @@
 package utilities
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -55,4 +56,29 @@ func ReadInputFileToGrid(filePath string) [][]string {
 	}
 
 	return grid
+}
+
+// ReadInputFileToCoordinateHash maps a grid based input to a hash where each value is accessed by its x,y coordinate pair
+// For ease of processing 0,0 is actually the top left most value and thus "increasing" y values actually go down the grid
+func ReadInputFileToCoordinateHash(filePath string) map[string]string {
+	file, err := os.ReadFile(filePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rows := strings.Split(string(file), "\r\n")
+
+	hash := make(map[string]string)
+
+	for i, row := range rows {
+		split := strings.Split(row, "")
+
+		for j, col := range split {
+			key := fmt.Sprintf("%d,%d", j, i)
+
+			hash[key] = col
+		}
+	}
+
+	return hash
 }
