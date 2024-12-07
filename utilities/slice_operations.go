@@ -32,6 +32,31 @@ func GetPermutations[T any](values []T) [][]T {
 	return result
 }
 
+// FillSpacesWithValues returns all permutations of values in the number of spaces provided
+func FillSpacesWithValues[T any](values []T, spaces int) [][]T {
+	var inner func(int)
+	var result [][]T
+	var subset []T
+
+	inner = func(iterator int) {
+		if iterator == spaces {
+			temp := make([]T, len(subset))
+			copy(temp, subset)
+			result = append(result, temp)
+			return
+		}
+
+		for _, value := range values {
+			subset = append(subset, value)
+			inner(iterator + 1)
+			subset = subset[:len(subset)-1]
+		}
+	}
+
+	inner(0)
+	return result
+}
+
 // GetSubsets returns all possible subsets of the provided slice
 func GetSubsets[T any](values []T) [][]T {
 	var inner func(int)
